@@ -1,5 +1,5 @@
 {
-  "name": "p5-gallery-starter",
+  "name": "sketches",
   "version": "1.0.0",
   "description": "",
   "repository": {
@@ -17,12 +17,13 @@
     "ci": "npm run check && npm run build"
   },
   "source": [
-    "src/index.html"
+    "src/index.html",
+    "src/fonts/Special_Elite/SpecialElite-Regular.ttf"
   ],
   "targets": {
     "default": {
       "distDir": "./output",
-      "publicUrl": "/p5-gallery-starter/"
+      "publicUrl": "/sketches/"
     }
   },
   "browserlist": [
