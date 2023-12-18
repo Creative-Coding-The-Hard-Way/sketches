@@ -48,7 +48,10 @@ function sketch(p5: P5) {
     }
     return false;
   };
-  p5.touchEnded = p5.mouseReleased;
+  p5.touchEnded = () => {
+    p5.redraw();
+    return false;
+  };
 
   p5.draw = () => {
     const seed = Math.round(1000 * p5.random(p5.millis()));
