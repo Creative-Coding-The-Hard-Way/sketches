@@ -46,6 +46,7 @@ function sketch(p5: P5) {
     if (p5.mouseButton == p5.LEFT) {
       p5.redraw();
     }
+    return false;
   };
 
   p5.draw = () => {
@@ -63,8 +64,14 @@ function sketch(p5: P5) {
           const t = top - j * step_size_y;
 
           if (p5.noise((2 * i) / steps_x, (2 * j) / steps_y) > 0.4) {
-            const s = p5.random(0, 1.2);
-            p5.line(l, t, l + step_size_x * s, t - step_size_y * s);
+            const s = p5.random(0, 1.5);
+            const m = p5.random(0, 0.5);
+            p5.line(
+              l - step_size_x * m,
+              t + step_size_y * m,
+              l + step_size_x * s,
+              t - step_size_y * s
+            );
           }
         }
       }
