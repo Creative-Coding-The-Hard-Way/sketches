@@ -1,9 +1,8 @@
 import { Page } from "./lib/page";
 
-import hello_color from "./sketches/hello_color";
-import scribble from "./sketches/scribble";
+import moonrise from "./sketches/moonrise";
 
 const page = new Page("Sketches");
-page.InstallSketches([hello_color, scribble]);
+page.InstallSketches([moonrise]);
 
 export {};
