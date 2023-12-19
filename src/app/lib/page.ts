@@ -59,8 +59,9 @@ export class Page {
 
     const hash_changed = () => {
       console.log("hash changed", window.location.hash);
-      if (hashed_sketches.has(window.location.hash)) {
-        this.InstallSketch(hashed_sketches.get(window.location.hash));
+      const sketch = hashed_sketches.get(window.location.hash);
+      if (sketch != undefined) {
+        this.InstallSketch(sketch);
       } else {
         console.log(
           "Got hash ",

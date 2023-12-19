@@ -4,6 +4,7 @@
     "esModuleInterop": true,
     "lib": ["es2021", "DOM"],
     "target": "es2021",
+    "strict": true
   },
   "include": [
     "src/**/*"
