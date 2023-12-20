@@ -102,6 +102,10 @@ function sketch(p5: P5) {
   let segment_start: Vec2;
   let segment_end: Vec2;
 
+  const old_paper = p5.color("#faebd7");
+  const gunmetal = p5.color("#272d2d");
+  const moonstone = p5.color("#50b2c0");
+
   p5.setup = () => {
     p5.createCanvas(w, h);
     segment_start = vec2(200, h / 2 + 100);
@@ -109,8 +113,9 @@ function sketch(p5: P5) {
   };
 
   p5.draw = () => {
-    p5.background(0);
-    p5.stroke(255);
+    p5.background(old_paper);
+    p5.stroke(gunmetal);
+    p5.strokeWeight(3);
 
     p5.line(segment_start.x, segment_start.y, segment_end.x, segment_end.y);
 
@@ -123,8 +128,8 @@ function sketch(p5: P5) {
     const i = intersect(m, dir, segment_end, segment_start);
     if (i != undefined) {
       p5.push();
-      p5.stroke("cornflowerblue");
-      p5.strokeWeight(4);
+      p5.stroke(moonstone);
+      p5.strokeWeight(6);
       p5.line(m.x, m.y, i.x, i.y);
       p5.circle(i.x, i.y, 10);
       p5.pop();
