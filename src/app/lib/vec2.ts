@@ -44,3 +44,5 @@ export class Vec2 {
 export function vec2(x: number, y: number): Vec2 {
   return new Vec2(x, y);
 }
+
+
