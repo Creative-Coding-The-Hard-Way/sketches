@@ -2,6 +2,22 @@ import { intersect_ray_and_segment } from "./geometry";
 import { Vec2, vec2 } from "./vec2";
 import P5 from "p5";
 
+function minmax(values: number[]): { min: number; max: number } {
+  const range = {
+    min: values[0],
+    max: values[1],
+  };
+  for (const n of values) {
+    if (n > range.max) {
+      range.max = n;
+    }
+    if (n < range.min) {
+      range.min = n;
+    }
+  }
+  return range;
+}
+
 export class Shape {
   private vertices: Vec2[];
 
@@ -59,6 +75,33 @@ export class Shape {
     }
 
     return intersections.sort((a, b) => a.dist - b.dist);
+  }
+
+  bounding_box(primary_axis: Vec2): {
+    top_left: Vec2;
+    top_right: Vec2;
+    bottom_left: Vec2;
+    bottom_right: Vec2;
+  } {
+    const off_axis = vec2(primary_axis.y, -primary_axis.x);
+
+    const primary_axis_values = this.vertices.map((v) => primary_axis.dot(v));
+    const off_axis_values = this.vertices.map((v) => off_axis.dot(v));
+
+    const primary_axis_range = minmax(primary_axis_values);
+    const off_axis_range = minmax(off_axis_values);
+
+    const t = primary_axis_range.max;
+    const b = primary_axis_range.min;
+    const l = off_axis_range.min;
+    const r = off_axis_range.max;
+
+    return {
+      top_left: primary_axis.multiply(t).sum(off_axis.multiply(l)),
+      top_right: primary_axis.multiply(t).sum(off_axis.multiply(r)),
+      bottom_left: primary_axis.multiply(b).sum(off_axis.multiply(l)),
+      bottom_right: primary_axis.multiply(b).sum(off_axis.multiply(r)),
+    };
   }
 
   /**
