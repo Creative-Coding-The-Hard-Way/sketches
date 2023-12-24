@@ -33,6 +33,7 @@
   ],
   "devDependencies": {
     "@parcel/packager-raw-url": "^2.8.2",
+    "@parcel/resolver-glob": "^2.10.3",
     "@parcel/transformer-webmanifest": "^2.8.2",
     "@types/p5": "^1.7.5",
     "eslint": "^8.30.0",

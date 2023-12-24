@@ -20,7 +20,7 @@ export function intersect_ray_and_segment(
   ray_dir: Vec2,
   segment_start: Vec2,
   segment_end: Vec2
-): Vec2 | undefined {
+): [Vec2, number] | undefined {
   const segment_dir = segment_end.sub(segment_start);
   const denominator = ray_dir.cross(segment_dir);
 
@@ -42,9 +42,9 @@ export function intersect_ray_and_segment(
       const t0 = s.sub(ray_start).dot(ray_dir) / ray_len_sq;
       const t1 = e.sub(ray_start).dot(ray_dir) / ray_len_sq;
       if (t0 >= 0) {
-        return s;
+        return [s, t0];
       } else if (t0 <= 0 && t1 >= 0) {
-        return ray_start;
+        return [ray_start, 0];
       } else {
         return;
       }
@@ -57,7 +57,7 @@ export function intersect_ray_and_segment(
       return;
     }
     if (segment_len >= 0 && segment_len <= 1) {
-      return segment_start.sum(segment_dir.multiply(segment_len));
+      return [segment_start.sum(segment_dir.multiply(segment_len)), ray_len];
     }
   }
   return;

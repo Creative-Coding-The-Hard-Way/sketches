@@ -1,6 +1,6 @@
 import P5 from "p5";
 import { Meta } from "../lib/page";
-import { Vec2, vec2} from "../lib/vec2";
+import { Vec2, vec2 } from "../lib/vec2";
 import { intersect_ray_and_segment } from "../lib/geometry";
 
 function sketch(p5: P5) {
@@ -32,8 +32,14 @@ function sketch(p5: P5) {
     const e = c.sum(dir.multiply(800));
     p5.line(m.x, m.y, e.x, e.y);
 
-    const i = intersect_ray_and_segment(m, dir, segment_end, segment_start);
-    if (i != undefined) {
+    const result = intersect_ray_and_segment(
+      m,
+      dir,
+      segment_end,
+      segment_start
+    );
+    if (result) {
+      const i = result[0];
       p5.push();
       p5.stroke(moonstone);
       p5.strokeWeight(6);

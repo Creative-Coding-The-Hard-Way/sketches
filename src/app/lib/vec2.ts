@@ -39,10 +39,12 @@ export class Vec2 {
     const len = this.length();
     return new Vec2(this.x / len, this.y / len);
   }
+
+  rotate90(): Vec2 {
+    return new Vec2(this.y, -this.x);
+  }
 }
 
 export function vec2(x: number, y: number): Vec2 {
   return new Vec2(x, y);
 }
-
-
